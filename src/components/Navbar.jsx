@@ -39,7 +39,7 @@ const Navbar = () => {
 					/>
 				</CButton>
 				<CButton className='mx-2 '>
-					<LogOut onClick={logoutMutation} />
+					<LogOut onClick={() => logoutMutation()} />
 				</CButton>
 			</div>
 		</div>

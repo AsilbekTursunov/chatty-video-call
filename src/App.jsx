@@ -12,6 +12,7 @@ import { useAuthUser } from './hooks/useAuthUser'
 import MainLayout from './layouts/MainLayout'
 import useThemeStore from './store/theme'
 import FriendsPage from './pages/FriendsPage'
+import MainPage from './pages/MainPage'
 const App = () => {
 	const { authUser, isLoading } = useAuthUser()
 	const { theme } = useThemeStore()
@@ -24,6 +25,20 @@ const App = () => {
 			<Routes>
 				<Route
 					path='/'
+					element={
+						!isAuthenticated ? (
+							<MainPage />
+						) : isOnboarded ? (
+							<MainLayout showSidebar={true}>
+								<HomePage />
+							</MainLayout>
+						) : (
+							<Navigate to={'/onboarding'} />
+						)
+					}
+				/>
+				<Route
+					path='/home'
 					element={
 						isAuthenticated ? (
 							isOnboarded ? (

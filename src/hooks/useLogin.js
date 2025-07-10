@@ -8,7 +8,9 @@ export const useSignIn = () => {
     mutationFn: loginUser,
     retry: false, // Disable retry on failure
     onSuccess: () => {
-      queryClient.invalidateQueries(['authUser']);
+      setTimeout(() => {
+        queryClient.invalidateQueries(['authUser']);
+      }, 3000)
     }
   });
   return { loginMutation, isPending, error };
